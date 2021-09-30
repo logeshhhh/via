@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="project.TravelersDetails">
+        <methods>
+          <include name="tc_54"/>
+          <include name="tc_53"/>
+          <include name="tc_52"/>
+          <include name="tc_51"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="tc_47"/>
+          <include name="tc_46"/>
+          <include name="tc_45"/>
+          <include name="tc_44"/>
+          <include name="tc_49"/>
+          <include name="tc_48"/>
+          <include name="tc_50"/>
+        </methods>
+      </class> <!-- project.TravelersDetails -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
