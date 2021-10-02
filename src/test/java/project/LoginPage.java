@@ -1,226 +1,196 @@
 package project;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 public class LoginPage extends Base 
 {
-	public void login(String email) 
-	{
-		  driver.findElement(By.id("wzrk-cancel")).click();
+	//login
+		public void getData(String email,String pwd) {
+			 //driver.findElement(By.id("wzrk-cancel")).click();
+			 driver.findElement(By.id("SignIn")).click();
+			 driver.findElement(By.id("loginIdText")).sendKeys(email);
+			 driver.findElement(By.id("passwordText")).sendKeys(pwd);
+			 driver.findElement(By.id("loginValidate")).click();     
+		}
+		
+	  @Test(enabled=false, description="login with valid credentials")
+	  public void tc_1() {
+		 driver.get("https://in.via.com/");
+		 getData("logeshm2000@gmail.com", "password123");  
+		 boolean d=driver.findElement(By.xpath("//div[@class='elementPad menuLabel secNavIcon']")).isDisplayed();
+		  Assert.assertTrue(d);
+		  System.out.println("Login Successful");
+		  driver.findElement(By.xpath("//div[contains(@class,'elementPad menuLabel secNavIcon')]")).click();
+		  driver.findElement(By.xpath("//a[normalize-space()='Logout']")).click();
+	  }
+	  
+	  @Test(enabled=true, description="login with invalid credentials")
+	  public void tc_2() throws Exception {
+		  driver.get("https://in.via.com/");
+		  getData("logeshm2000@gmail.com", "newpassword");
+		  WebDriverWait wt=new WebDriverWait(driver,2);
+		  wt.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'viaAlertMsg')]")));
+		  boolean d=driver.findElement(By.xpath("//div[contains(@class,'viaAlertMsg')]")).isDisplayed();
+		  Assert.assertTrue(d);	  
+	  }
+	  @Test(enabled=false, description="login with invalid credentials")
+	  public void tc_3() {
+		  driver.get("https://in.via.com/");
+		  getData("logeshm2000", "newpassword");
+		  boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+		  Assert.assertTrue(d);	  
+	  }
+	  @Test(enabled=false, description="login with invalid credentials")
+	  public void tc_4() {
+		  driver.get("https://in.via.com/");
+		  getData(" ", "");
+		  boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+		  Assert.assertTrue(d);  
+	  }
+	  
+	  @Test(enabled=false, description="login with invalid credentials")
+	  public void tc_5() {
+		  driver.get("https://in.via.com/");
+		  getData("logeshm2000@gmail.com ", "");
+		  boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+		  Assert.assertTrue(d);  
+	  }
+	  
+	  @Test(enabled=false, description="login with invalid credentials")
+	  public void tc_6() {
+		  driver.get("https://in.via.com/");
+		  getData(" ", "password123");
+		  boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+		  Assert.assertTrue(d);  
+	  }
+	  
+	  //reset
+	  public void getData1(String email) 
+	  {
+		  //driver.findElement(By.id("wzrk-cancel")).click();
 		  driver.findElement(By.id("SignIn")).click();
 		  driver.findElement(By.cssSelector("[class='panelInlineTxt jsInitLoginValid u_clViaGreen signUpBtn']")).click();
 		  driver.findElement(By.id("forgotEmail")).sendKeys(email);
 		  driver.findElement(By.cssSelector("[class='inlineBtn panelBtn jsSendOtp']")).click();
-		
-		  
-	}
-	
-	public void login1(String email, String pwd)
-	{
-		  driver.findElement(By.id("wzrk-cancel")).click();
-		  driver.findElement(By.id("SignIn")).click();
-		  driver.findElement(By.id("loginIdText")).sendKeys(email);
-		  driver.findElement(By.id("passwordText")).sendKeys(pwd);
-		  driver.findElement(By.id("loginValidate")).click();	 
-	}
-	
-	public void login2(String email, String pwd)
-	{
-		  driver.findElement(By.id("wzrk-cancel")).click();
-		  driver.findElement(By.id("SignIn")).click();
-		  driver.findElement(By.id("loginFacebook")).click();
-		  
-	}
-	
-	
-	
-	@Test(enabled=true,description="Testing with valid credentials")
-	  public void tc_01()
-	{
-		  driver.get("https://in.via.com/");
-		  login1("logeshm2000@gmail.com","password123");
-		  boolean data=driver.findElement(By.id("userNameSecondaryNav")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println(driver.findElement(By.id("userNameSecondaryNav")).getText());
 	  }
-	
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_02() throws InterruptedException 
-	{
-		  driver.get("https://in.via.com/");
-		  login1("logeshm2000@gmail.com","passworddd");
-		  boolean data=driver.findElement(By.xpath("//div[@id='viaAlert']/div[1]/div[1]")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Login Error. Please try again!");
+	  
+	  @Test(enabled=false, description="reset password with invalid email")
+	  public void tc_7()
+	  {   driver.get("https://in.via.com/");
+	      getData1("grykk");
+	      boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+	      Assert.assertTrue(d);  
+	      System.out.println("Enter valid email");
 	  }
-	
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_03() 
-	{
-		  driver.get("https://in.via.com/");
-		  login1("logeshm2000.com","password");
-		  boolean data=driver.findElement(By.cssSelector("[class='qtip-content']")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Enter Valid Email");
+	  @Test(enabled=false, description="reset with null email")
+	  public void tc_8()
+	  {   driver.get("https://in.via.com/");
+	      getData1("");
+	      boolean d=driver.findElement(By.cssSelector("div[class='qtip-content']")).isDisplayed();
+	      Assert.assertTrue(d); 
+	      System.out.println("Enter valid email");
 	  }
-	
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_04() 
-	{
-		  driver.get("https://in.via.com/");
-		  login1("","");
-		  boolean data=driver.findElement(By.cssSelector("[class='qtip-content']")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Enter Valid Email");
+	  
+	  @Test(enabled=false, description="testing with unregistered email")
+	  public void tc_9() throws Exception
+	  {   driver.get("https://in.via.com/");
+	      getData1("testingdemo@gmail.com");
+	      boolean d=driver.findElement(By.xpath("//div[@class='viaAlertMsg']")).isDisplayed();
+	      Assert.assertTrue(d); 
+	      System.out.println(driver.findElement(By.xpath("//div[@class='viaAlertMsg']")).getText());
 	  }
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_06() 
-	{
-		  driver.get("https://in.via.com/");
-		  login("jajaja.com");
-		  boolean data=driver.findElement(By.cssSelector("[class='qtip-content']")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Enter your email or mobile to get an OTP!");
+	  
+	  /* //google
+	  public void getData3(String fname, String pwd)
+	  { 
+		//driver.findElement(By.id("wzrk-cancel")).click();
+	    driver.manage().deleteAllCookies();
+	    driver.findElement(By.id("SignIn")).click();
+	    driver.findElement(By.id("loginGoogle")).click();   
+	    Set<String> allWin=driver.getWindowHandles();
+	    List<String> allWin2= new ArrayList(allWin);
+	    driver.switchTo().window(allWin2.get(1));
+	    driver.findElement(By.xpath("//div[@class='BHzsHc']")).click();
+	    driver.findElement(By.xpath("//input[@id='identifierId']")).sendKeys(fname);
+	    driver.findElement(By.xpath("//span[normalize-space()='Next']")).click();
+	    driver.findElement(By.xpath("//input[@name='password']")).sendKeys(pwd);
+	    driver.findElement(By.xpath("//span[normalize-space()='Next']")).click();  
 	  }
-	
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_07() 
-	{
+	  
+	  @Test(enabled=true, description="login with facebook missing credentials")
+	  public void tc_10()
+	  {   driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
 		  driver.get("https://in.via.com/");
-		  login("");
-		  boolean data=driver.findElement(By.cssSelector("[class='qtip-content']")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Enter your email or mobile to get an OTP!");
-	 }
-	@Test(enabled=false,description="Testing with Invalid credentials")
-	  public void tc_08() 
-	{
-		  driver.get("https://in.via.com/");
-		  login("");
-		  boolean data=driver.findElement(By.cssSelector("[class='qtip-content']")).isDisplayed();
-		  Assert.assertTrue(data);
-		  System.out.println("Enter your email or mobile to get an OTP!");
-	 }
-	
- 
+	  
+	      getData3("ishwarya","password");
+	      boolean d=driver.findElement(By.xpath("//div[@class='fsl fwb fcb']")).isDisplayed();
+	      Assert.assertTrue(d);
+	      driver.close();
+	  } */
 
-  
-  
-  /*
-  
-  @Test(enabled=false)
-  public void TC_05() throws Exception 
-  {
-	  ExtentReports ex=new ExtentReports();
-	  ExtentHtmlReporter s=(new ExtentHtmlReporter("TC_05.html"));
-	  ex.attachReporter(s);
-	  s.config().setTheme(Theme.DARK);
-	  ExtentTest tc=ex.createTest("LoginTest");
+
+
+
+
+
+	//facebook
+	  public void getData2(String fname, String pwd)
+	  { 
+		//driver.findElement(By.id("wzrk-cancel")).click();
+	    
+	    driver.findElement(By.id("SignIn")).click();
+	    driver.findElement(By.id("loginFacebook")).click();   
+	    Set<String> allWin=driver.getWindowHandles();
+	    List<String> allWin2= new ArrayList(allWin);
+	    driver.switchTo().window(allWin2.get(1));
+	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys(fname);
+	    driver.findElement(By.xpath("//input[@id='pass']")).sendKeys(pwd);
+	    driver.findElement(By.name("login")).click(); 
+	    
+	  }
 	  
+	  @Test(enabled=false, description="login with facebook invalid credentials")
+	  public void tc_12() throws Exception
+	  {   
+		  driver.get("https://in.via.com/");
+	      getData2("demo","test123");
+	      boolean d=driver.findElement(By.xpath("//div[@class='fsl fwb fcb']")).isDisplayed();
+	      Assert.assertTrue(d);
+	      driver.close();
+	      Thread.sleep(2000);
+	  }
 	  
-	  tc.info("Opening Url").pass("Test Pass");
-	  driver.get("https://in.via.com/");
+	  @Test(enabled=false, description="login with facebook missing credentials")
+	  public void tc_13()
+	  {   driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
+	      driver.manage().deleteAllCookies();
+		  driver.get("https://in.via.com/");
 	  
-	  tc.info("Closing the Pop-Up").pass("Test Pass");
-	  driver.findElement(By.id("wzrk-cancel")).click();
+	      getData2("","");
+	      boolean d=driver.findElement(By.xpath("//div[@class='fsl fwb fcb']")).isDisplayed();
+	      Assert.assertTrue(d);
+	      driver.close();
+	  }
 	  
-	  tc.info("Click on Sign in").pass("Test Pass");
-	  driver.findElement(By.id("SignIn")).click();
+	  @Test(enabled=false, description="login with facebook valid credentials")
+	  public void tc_14()
+	  {   driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
+	     driver.manage().deleteAllCookies();
+		  driver.get("https://in.via.com/");
 	  
-	  tc.info("Click on Forgot Password").pass("Test Pass");
-	  driver.findElement(By.cssSelector("[class='panelInlineTxt jsInitLoginValid u_clViaGreen signUpBtn']")).click();
+	      getData2("maref16555@busantei.com","testingdemo123$");
+	      boolean d=driver.findElement(By.xpath("//div[@class='_50f3']")).isDisplayed();
+	      Assert.assertTrue(d);
+	      driver.close();
+	  }
 	  
-	  tc.info("Enter Valid Email/Number").pass("Test Pass");
-	  driver.findElement(By.id("forgotEmail")).sendKeys("logeshm2000@gmail.com");
-	  
-	  tc.info("Click on Send OTP").pass("Test Pass");
-	  driver.findElement(By.cssSelector("[class='inlineBtn panelBtn jsSendOtp']")).click();
-	  
-	  tc.info("Enter Valid OTP").pass("Test Pass");
-	  driver.findElement(By.id("otp")).sendKeys("825152");
-	  
-	  tc.info("Enter Valid New Password").pass("Test Pass");
-	  driver.findElement(By.id("newPassword")).sendKeys("password123");
-	  
-	  tc.info("Click on Reset Password").pass("Test Pass");
-	  driver.findElement(By.id("resetPassword")).click();
-	  
-	  tc.info("Verifying").pass("Test Pass");
-	  String a=driver.findElement(By.id("userNameSecondaryNav")).getText();
-	  
-	  
-	  
-	  Assert.assertEquals("Hi Logesh",a);
-	  
-	 
-	  
-	  ex.flush();
-	 
-  }
-  
-  
-  
-  @Test(enabled=false)
-  public void TC_08() throws Exception 
-  {
-	  ExtentReports ex=new ExtentReports();
-	  ExtentHtmlReporter s=(new ExtentHtmlReporter("TC_08.html"));
-	  ex.attachReporter(s);
-	  s.config().setTheme(Theme.DARK);
-	  ExtentTest tc=ex.createTest("LoginTest");
-	  
-	  
-	  tc.info("Opening Url").pass("Test Pass");
-	  driver.get("https://in.via.com/");
-	  
-	  tc.info("Closing the Pop-Up").pass("Test Pass");
-	  driver.findElement(By.id("wzrk-cancel")).click();
-	  
-	  tc.info("Click on Sign in").pass("Test Pass");
-	  driver.findElement(By.id("SignIn")).click();
-	  
-	  tc.info("Click on Login With Facebook").pass("Test Pass");
-	  driver.findElement(By.id("loginFacebook")).click();
-	  
-	  tc.info("Enter InValid Email/Number").pass("Test Pass");
-	  driver.findElement(By.id("email")).sendKeys("jajaja");
-	  
-	 
-	  
-	  ex.flush();
-	 
-  }
-  
-  @Test(enabled=false)
-  public void TC_09() throws Exception 
-  {
-	  ExtentReports ex=new ExtentReports();
-	  ExtentHtmlReporter s=(new ExtentHtmlReporter("TC_09.html"));
-	  ex.attachReporter(s);
-	  s.config().setTheme(Theme.DARK);
-	  ExtentTest tc=ex.createTest("LoginTest");
-	  
-	  
-	  tc.info("Opening Url").pass("Test Pass");
-	  driver.get("https://in.via.com/");
-	  
-	  tc.info("Closing the Pop-Up").pass("Test Pass");
-	  driver.findElement(By.id("wzrk-cancel")).click();
-	  
-	  tc.info("Click on Sign in").pass("Test Pass");
-	  driver.findElement(By.id("SignIn")).click();
-	  
-	  tc.info("Click on Login With Google").pass("Test Pass");
-	  driver.findElement(By.id("loginGoogle")).click();
-	  
-	  
-	
-	  
-	  ex.flush();
-	 
-  }
-  */
-}
+	}

@@ -1,0 +1,52 @@
+url= https://in.via.com/
+roundTrip=//label[normalize-space()='Round trip']
+depart=departure
+departure=//div[@id='depart-cal']/div[3]/div[2]/div[4]/div[3]
+return=//div[@id='return-cal']/div[3]/div[2]/div[4]/div[5]
+from=source
+to=destination
+fromdrop=span[class='name']
+todrop=//ul[@id='ui-id-2']/li[1]/span[2]
+more=[class='more']
+airline=prefCarrier
+airlineselect=//ul[@id='ui-id-13']/li/span[1]
+class=preferredClass
+economy=[value='ECONOMY']
+buisness=[value='BUSINESS']
+PremiumEconomy=[value='ECONOMY_FULL']
+routing=routingType
+direct=[value='DIRECT']
+nonStop=[value='DIRECT_NONSTOP']
+singleConnecting=[value='SINGLE_CONNECTING']
+searchFlights=search-flight-btn
+book=//div[@class='u_inlineblk u_width35 u_vertAlignMiddle']
+book_rt=button[class='bookCTA u_marB5']
+book_rt1=//div[contains(@class,'returnResults')]//div[3]//div[1]//div[2]//div[2]//button[1]
+bookFlights=//div[@class='bookCTA return']
+title=adult1Title
+firstName=adult1FirstName
+lastName=adult1Surname
+day=adult1DOBday
+month=adult1DOBmonth
+year=adult1DOByear
+mobile=contactMobile
+email=contactEmail
+insurance=//div[@class='row']/div/div/label
+terms=msgInfoChkBox_label
+proceedBooking=//div[@class='inBlk makePayDiv']
+makePayment=confirmProceedPayBtn
+filter=//div[contains(@class,'airlines allFilter')]//p
+selectAll=//div[@class='customCBox']//label[@for='flt_all']
+airasia=//div[@class='customCBox']//label[@for='I5']
+
+
+multicity=//label[normalize-space()='Multi-city']
+flight2=multi-city-label-1
+from1=//input[@id='source-0']
+to1=//input[@id='destination-0']
+from2=//input[@id='source-1']
+to2=//input[@id='destination-1']
+calendar1=//div[@class='multi-city-box-0 box']//div[@class='calendar-icon']
+calendar2=//div[@class='multi-city-box-1 box']//div[@class='calendar-icon']
+departure1=//div[@id='depart-cal-0']/div[3]/div[2]/div[*]/div[contains(text(),"25")]
+departure2=//div[@id='depart-cal-1']/div[4]/div[2]/div[*]/div[contains(text(),"20")]
