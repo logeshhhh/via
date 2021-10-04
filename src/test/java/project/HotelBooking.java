@@ -17,7 +17,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class HotelBooking extends Base
 {
-	Excel_Import ex= new Excel_Import("D:\\LTI\\TRAINING\\MANUAL TESTING\\HotelData.xlsx");
+	Excel_Import ex= new Excel_Import("src/test/resources/data/HotelData.xlsx");
 	Properties p =new Properties();
 	ExtentReports ex1= new ExtentReports();
 	

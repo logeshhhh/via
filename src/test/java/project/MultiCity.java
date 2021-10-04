@@ -17,7 +17,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class MultiCity extends Base
 {
-	Excel_Import ex= new Excel_Import("D:\\LTI\\TRAINING\\MANUAL TESTING\\Data.xlsx");
+	Excel_Import ex= new Excel_Import("src/test/resources/data/Data.xlsx");
 	Properties p =new Properties();
 	ExtentReports ex1= new ExtentReports();
 	

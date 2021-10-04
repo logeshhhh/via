@@ -16,7 +16,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 public class TravellerDetails extends Base
 {
 	
-	Excel_Import ex= new Excel_Import("D:\\LTI\\TRAINING\\MANUAL TESTING\\Data.xlsx");
+	Excel_Import ex= new Excel_Import("src/test/resources/data/Data.xlsx");                                     //importing data from Excel
 	Properties p =new Properties();
 	ExtentReports ex1= new ExtentReports();
 	
@@ -24,32 +24,32 @@ public class TravellerDetails extends Base
 	public void flight(String from,String to,String airline) throws Exception 
 	{  
 		  p.load(new FileInputStream("settings.property"));
-		  driver.get(p.getProperty("url"));
-		  ex1.attachReporter(new ExtentHtmlReporter("TravellerDetails.html"));
-		  driver.manage().deleteAllCookies();
-		  driver.findElement(By.id(p.getProperty("from"))).clear();
+		  driver.get(p.getProperty("url")); 																	//url
+		  ex1.attachReporter(new ExtentHtmlReporter("TravellerDetails.html"));		
+		  driver.manage().deleteAllCookies();	
+		  driver.findElement(By.id(p.getProperty("from"))).clear();											    //from
 		  driver.findElement(By.id(p.getProperty("from"))).sendKeys(from);
 		  List<WebElement> l1= driver.findElements(By.cssSelector(p.getProperty("fromdrop")));
 		  l1.get(0).click(); 
-		  driver.findElement(By.id(p.getProperty("to"))).clear();
+		  driver.findElement(By.id(p.getProperty("to"))).clear();                                               //to
 		  driver.findElement(By.id(p.getProperty("to"))).sendKeys(to);
 		  
 		  driver.findElement(By.xpath(p.getProperty("todrop"))).click();
 		  Thread.sleep(1000);
 		  
-		  driver.findElement(By.xpath("//div[@id='depart-cal']/div[4]/div[2]/div[3]/div[2]")).click();
-		  driver.findElement(By.cssSelector(p.getProperty("more"))).click();
-		  driver.findElement(By.id(p.getProperty("airline"))).clear();
+		  driver.findElement(By.xpath(p.getProperty("departure"))).click();          							//depature
+		  driver.findElement(By.cssSelector(p.getProperty("more"))).click();									//more options
+		  driver.findElement(By.id(p.getProperty("airline"))).clear();                                          //preferred airline
 		  driver.findElement(By.id(p.getProperty("airline"))).sendKeys(airline);
 		  driver.findElement(By.xpath(p.getProperty("airlineselect"))).click();
-		  driver.findElement(By.id(p.getProperty("class"))).click();
+		  driver.findElement(By.id(p.getProperty("class"))).click();                                            //class
 		  driver.findElement(By.cssSelector(p.getProperty("economy"))).click();
-		  driver.findElement(By.id(p.getProperty("routing"))).click();
-		  driver.findElement(By.cssSelector(p.getProperty("direct"))).click();
-		  driver.findElement(By.id(p.getProperty("searchFlights"))).click();
+		  driver.findElement(By.id(p.getProperty("routing"))).click();                                          //routing
+		  driver.findElement(By.cssSelector(p.getProperty("direct"))).click(); 
+		  driver.findElement(By.id(p.getProperty("searchFlights"))).click();                                    //search flights
 		  Thread.sleep(5000);
 		  
-		  List<WebElement>ls= driver.findElements(By.xpath(p.getProperty("book")));
+		  List<WebElement>ls= driver.findElements(By.xpath(p.getProperty("book")));                             //book
 		  ls.get(0).click();
 		  Thread.sleep(5000);
 		
@@ -59,41 +59,41 @@ public class TravellerDetails extends Base
 	{
 		
 		p.load(new FileInputStream("settings.property"));
-		driver.findElement(By.id(p.getProperty("title"))).sendKeys(title);
-		driver.findElement(By.id(p.getProperty("firstName"))).clear();
+		driver.findElement(By.id(p.getProperty("title"))).sendKeys(title);										//title
+		driver.findElement(By.id(p.getProperty("firstName"))).clear();                                          //first name
 		driver.findElement(By.id(p.getProperty("firstName"))).sendKeys(fname);
-		driver.findElement(By.id(p.getProperty("lastName"))).clear();
+		driver.findElement(By.id(p.getProperty("lastName"))).clear();                                           //last name
 		driver.findElement(By.id(p.getProperty("lastName"))).sendKeys(lname);
-		driver.findElement(By.id(p.getProperty("day"))).sendKeys(date);
-		driver.findElement(By.id(p.getProperty("month"))).sendKeys(month);
-		driver.findElement(By.id(p.getProperty("year"))).sendKeys(year);
-		driver.findElement(By.id(p.getProperty("mobile"))).clear();
+		driver.findElement(By.id(p.getProperty("day"))).sendKeys(date);                                         //date
+		driver.findElement(By.id(p.getProperty("month"))).sendKeys(month);                                      //month
+		driver.findElement(By.id(p.getProperty("year"))).sendKeys(year);                                        //year
+		driver.findElement(By.id(p.getProperty("mobile"))).clear();                                             //mobile
 		Thread.sleep(1000);
-		driver.findElement(By.id(p.getProperty("mobile"))).sendKeys(mobile);
+		driver.findElement(By.id(p.getProperty("mobile"))).sendKeys(mobile);               
 		Thread.sleep(1000);
-		driver.findElement(By.id(p.getProperty("email"))).clear();
+		driver.findElement(By.id(p.getProperty("email"))).clear();                                              //email
 		Thread.sleep(1000);
 		driver.findElement(By.id(p.getProperty("email"))).sendKeys(email);
 		Thread.sleep(1000);
 	}
 	public void insurance() throws Exception
 	{
-		driver.findElement(By.xpath(p.getProperty("insurance"))).click();
+		driver.findElement(By.xpath(p.getProperty("insurance"))).click();                                       //insurance
 		Thread.sleep(1000);
 	}
 	public void msginfo() throws Exception
 	{
-		driver.findElement(By.xpath(p.getProperty("terms"))).click();
+		driver.findElement(By.xpath(p.getProperty("terms"))).click();                                           //terms
 		Thread.sleep(1000);
 	}	
 	public void pay() throws Exception
 	{
-		driver.findElement(By.xpath(p.getProperty("proceedBooking"))).click();
+		driver.findElement(By.xpath(p.getProperty("proceedBooking"))).click();                                  //proceed booking
 		Thread.sleep(2000);
 	}
 		public void pay1() throws Exception 
 		{
-			driver.findElement(By.id(p.getProperty("makePayment"))).click();
+			driver.findElement(By.id(p.getProperty("makePayment"))).click();                                    //make payment
 			Thread.sleep(2000);
 	}
 	
@@ -131,7 +131,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Required']")).getText());
 	 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest2");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Title");
 	  tc.pass("test pass");	 
   }
   
@@ -151,7 +151,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Alphabets & Spaces only']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest3");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid First Name");
 	  tc.pass("test pass");	 
   }
   
@@ -171,7 +171,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Alphabets & Spaces only']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest4");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Last Name");
 	  tc.pass("test pass");	
 	  
   }
@@ -190,7 +190,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Required']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest5");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Date");
 	  tc.pass("test pass");	
 	  
   }
@@ -209,7 +209,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Required']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest6");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Month");
 	  tc.pass("test pass");	
 	  
   }
@@ -228,7 +228,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Required']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest7");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Year");
 	  tc.pass("test pass");	
 	  
   }
@@ -247,7 +247,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Enter Valid Mobile & country code ( Required )']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest8");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Mobile Number");
 	  tc.pass("test pass");	
 	  
   }
@@ -266,7 +266,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Enter Valid Mobile & country code ( Required )']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest9");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Missing Mobile Number");
 	  tc.pass("test pass");
 	  
   }
@@ -286,7 +286,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Enter Valid Email ( Required )']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest10");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Invalid Email");
 	  tc.pass("test pass");
 	  
   }
@@ -305,7 +305,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Enter Valid Email ( Required )']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest11");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with Missing Email");
 	  tc.pass("test pass");
 	  
 	  
@@ -327,7 +327,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.id("ccNum-allcardsuihandler")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest12");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking without Insurace");
 	  tc.pass("test pass");
 	  
 	  
@@ -347,7 +347,7 @@ public class TravellerDetails extends Base
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Please accept booking terms']")).getText());
 		 
 	  ExtentTest tc=ex1.createTest("TravellerDetailsTest13");
-	  tc.info("Booking with Invalid credentials");
+	  tc.info("Booking with missing Terms and Conditions");
 	  tc.pass("test pass");
 	  ex1.flush();
 	  

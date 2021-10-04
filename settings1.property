@@ -1,0 +1,51 @@
+url= https://in.via.com/
+
+
+signin=SignIn
+signup=//span[normalize-space()='SIGN UP']
+email=//input[@id='emailIdSignUp']
+name=//input[@id='nameSignUp']
+pwd=//input[@id='passwordSignUp']
+mob=//input[@id='mobileNoSignUp']
+fin=//input[@id='signUpValidate']
+valid= //div[@class='elementPad menuLabel secNavIcon']
+invalid= //div[contains(text(),'Sign In')]
+
+
+
+
+
+browser=chrome
+cpath=src/test/resources/drivers/chromedriver.exe
+fpath=src/test/resources/drivers/geckodriver.exe
+
+
+
+
+
+signinl=SignIn
+emaill=loginIdText
+pwdl=passwordText
+login=loginValidate
+validl=//div[@class='elementPad menuLabel secNavIcon']
+logout=//a[normalize-space()='Logout']
+invalidl=//div[contains(@class,'viaAlertMsg')]
+invalidl1=div[class='qtip-content']
+
+
+facebook=//div[@class='fsl fwb fcb']
+flogin=loginFacebook
+femail=//input[@id='email']
+fpass=//input[@id='pass']
+flog=login
+
+
+rsign=SignIn
+reset=[class='panelInlineTxt jsInitLoginValid u_clViaGreen signUpBtn']
+forgot=forgotEmail
+click=[class='inlineBtn panelBtn jsSendOtp']
+otp=//input[@value='Send OTP']
+alert=//div[@class='viaAlertMsg']
+otpip-//input[@id='otp']
+rpwd=//input[@id='newPassword']
+rfin=//input[@id='resetPassword']

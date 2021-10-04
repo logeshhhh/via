@@ -16,7 +16,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class RoundTripFlightBooking extends Base
 {
-	Excel_Import ex= new Excel_Import("D:\\LTI\\TRAINING\\MANUAL TESTING\\Data.xlsx");
+	Excel_Import ex= new Excel_Import("src/test/resources/data/Data.xlsx");
 	Properties p =new Properties();
 	ExtentReports ex1= new ExtentReports();
 	
@@ -24,92 +24,92 @@ public class RoundTripFlightBooking extends Base
 	{
 		  p.load(new FileInputStream("settings.property"));
 		  driver.get(p.getProperty("url"));
-		  ex1.attachReporter(new ExtentHtmlReporter("RoundTripFlight.html"));
-		  driver.manage().deleteAllCookies();
-		  driver.findElement(By.xpath(p.getProperty("roundTrip"))).click();
-		  driver.findElement(By.id(p.getProperty("from"))).clear();
+		  ex1.attachReporter(new ExtentHtmlReporter("RoundTripFlight.html"));                          //url
+		  driver.manage().deleteAllCookies(); 
+		  driver.findElement(By.xpath(p.getProperty("roundTrip"))).click();							   //roundtrip
+		  driver.findElement(By.id(p.getProperty("from"))).clear();									   //from
 		  driver.findElement(By.id(p.getProperty("from"))).sendKeys(from);
 		  Thread.sleep(1000);
 		  driver.findElement(By.id(p.getProperty("from"))).sendKeys(Keys.ARROW_DOWN);
 		  Thread.sleep(1000);
 		  driver.findElement(By.id(p.getProperty("from"))).sendKeys(Keys.ENTER);
 		  Thread.sleep(1000);
-		  driver.findElement(By.id(p.getProperty("to"))).clear();
+		  driver.findElement(By.id(p.getProperty("to"))).clear();									   //to
 		  driver.findElement(By.id(p.getProperty("to"))).sendKeys(to);
 		  Thread.sleep(1000);
 		  driver.findElement(By.id(p.getProperty("to"))).sendKeys(Keys.ARROW_DOWN);
 		  Thread.sleep(1000);
 		  driver.findElement(By.id(p.getProperty("to"))).sendKeys(Keys.ENTER);
 		
-		  driver.findElement(By.id("departure")).click();
+		  driver.findElement(By.id("departure")).click();                                              //departure
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(p.getProperty("departure"))).click();
 		  Thread.sleep(1000);
-		  driver.findElement(By.id("return")).click();
+		  driver.findElement(By.id("return")).click();												   //return
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(p.getProperty("return"))).click();
 		  Thread.sleep(1000);
 		  
-		  driver.findElement(By.cssSelector(p.getProperty("more"))).click();
-		  driver.findElement(By.id(p.getProperty("airline"))).clear();
+		  driver.findElement(By.cssSelector(p.getProperty("more"))).click();                           //more options
+		  driver.findElement(By.id(p.getProperty("airline"))).clear();                                 //preferred airline
 		  driver.findElement(By.id(p.getProperty("airline"))).sendKeys(airline);
 		  driver.findElement(By.id(p.getProperty("airline"))).sendKeys(Keys.DOWN);
 		  driver.findElement(By.id(p.getProperty("airline"))).sendKeys(Keys.ENTER);
-		  driver.findElement(By.id(p.getProperty("class"))).click();
+		  driver.findElement(By.id(p.getProperty("class"))).click();                                   //class
 		  driver.findElement(By.cssSelector(p.getProperty("economy"))).click();
-		  driver.findElement(By.id(p.getProperty("routing"))).click();
+		  driver.findElement(By.id(p.getProperty("routing"))).click();                                 //routing
 		  driver.findElement(By.cssSelector(p.getProperty("direct"))).click();
-		  driver.findElement(By.id(p.getProperty("searchFlights"))).click();
+		  driver.findElement(By.id(p.getProperty("searchFlights"))).click();                           //search flights
 		  Thread.sleep(10000);
 	}
 	
 	public void booking() throws Exception 
 	{
 		 p.load(new FileInputStream("settings.property"));
-	     driver.findElement(By.xpath(p.getProperty("filter"))).click();
+	     driver.findElement(By.xpath(p.getProperty("filter"))).click();                                //filter
 	     Thread.sleep(1000);
-	     driver.findElement(By.xpath(p.getProperty("selectAll"))).click();
+	     driver.findElement(By.xpath(p.getProperty("selectAll"))).click();                             //select all
 	     Thread.sleep(1000);
-	     driver.findElement(By.xpath(p.getProperty("airasia"))).click();
+	     driver.findElement(By.xpath(p.getProperty("airasia"))).click();                               //airasia india
 	     Thread.sleep(1000);	  
-		 List<WebElement> ls=driver.findElements(By.cssSelector(p.getProperty("book_rt")));
+		 List<WebElement> ls=driver.findElements(By.cssSelector(p.getProperty("book_rt")));            //book 1st flight
 		 ls.get(0).click();
-		 driver.findElement(By.xpath(p.getProperty("book_rt1"))).click();
+		 driver.findElement(By.xpath(p.getProperty("book_rt1"))).click();                              //book 2nd flight
 		 driver.findElement(By.xpath(p.getProperty("bookFlights"))).click();
 	     Thread.sleep(3000);
 	}
 	
 	public void details(String title,String fname,String lname,String date,String month,String year,String mobile,String email) throws Exception
 	{
-		driver.findElement(By.id(p.getProperty("title"))).sendKeys(title);
-		driver.findElement(By.id(p.getProperty("firstName"))).clear();
-		driver.findElement(By.id(p.getProperty("firstName"))).sendKeys(fname);
-		driver.findElement(By.id(p.getProperty("lastName"))).clear();
+		driver.findElement(By.id(p.getProperty("title"))).sendKeys(title);                             //title
+		driver.findElement(By.id(p.getProperty("firstName"))).clear();                                 //first name
+		driver.findElement(By.id(p.getProperty("firstName"))).sendKeys(fname);                         
+		driver.findElement(By.id(p.getProperty("lastName"))).clear();                                  //last name
 		driver.findElement(By.id(p.getProperty("lastName"))).sendKeys(lname);
-		driver.findElement(By.id(p.getProperty("day"))).sendKeys(date);
-		driver.findElement(By.id(p.getProperty("month"))).sendKeys(month);
-		driver.findElement(By.id(p.getProperty("year"))).sendKeys(year);
-		driver.findElement(By.id(p.getProperty("mobile"))).clear();
-		driver.findElement(By.id(p.getProperty("mobile"))).sendKeys(mobile);
-		driver.findElement(By.id(p.getProperty("email"))).clear();
+		driver.findElement(By.id(p.getProperty("day"))).sendKeys(date);                                //date
+		driver.findElement(By.id(p.getProperty("month"))).sendKeys(month);                             //month
+		driver.findElement(By.id(p.getProperty("year"))).sendKeys(year);                               //year
+		driver.findElement(By.id(p.getProperty("mobile"))).clear();                                    //mobile
+		driver.findElement(By.id(p.getProperty("mobile"))).sendKeys(mobile);   
+		driver.findElement(By.id(p.getProperty("email"))).clear();                                     //email
 		driver.findElement(By.id(p.getProperty("email"))).sendKeys(email);
-		driver.findElement(By.xpath(p.getProperty("insurance"))).click();
+		driver.findElement(By.xpath(p.getProperty("insurance"))).click();                              //insurance
 		Thread.sleep(1000);
 	}
 	public void terms() throws Exception
 	{
-		driver.findElement(By.xpath("//label[@id='msgInfoChkBox_label']")).click();
+		driver.findElement(By.xpath("//label[@id='msgInfoChkBox_label']")).click();                    //terms and conditions
 		Thread.sleep(1000);
 	}
 		
 	public void pay() throws Exception
 	{
-		driver.findElement(By.xpath(p.getProperty("proceedBooking"))).click();
+		driver.findElement(By.xpath(p.getProperty("proceedBooking"))).click();                         //proceed booking
 		Thread.sleep(2000);
     }
 	public void pay1() throws Exception 
 	{
-		driver.findElement(By.id(p.getProperty("makePayment"))).click();
+		driver.findElement(By.id(p.getProperty("makePayment"))).click();                               //make payment
 		Thread.sleep(3000);
     }
 	
@@ -140,7 +140,7 @@ public class RoundTripFlightBooking extends Base
 		 System.out.println(driver.findElement(By.xpath("//*[text()='Select Departing Airport']")).getText());
 		  
 		  ExtentTest tc=ex1.createTest("RoundTripFlights_2");
-		  tc.info("Booking with Invalid credentials");
+		  tc.info("Booking with Invalid Departing Airport");
 		  tc.pass("test pass");
 	  }
 	
@@ -153,7 +153,7 @@ public class RoundTripFlightBooking extends Base
 		  System.out.println(driver.findElement(By.xpath("//*[text()='Select Arriving Airport']")).getText());
 		  
 		  ExtentTest tc=ex1.createTest("RoundTripFlights_3");
-		  tc.info("Booking with Invalid credentials");
+		  tc.info("Booking with Invalid Arriving Airport");
 		  tc.pass("test pass");
 	  }
 	 
@@ -166,7 +166,7 @@ public class RoundTripFlightBooking extends Base
 		  System.out.println(driver.findElement(By.xpath("//*[text()='Select Arriving Airport']")).getText());
 		  
 		  ExtentTest tc=ex1.createTest("RoundTripFlights_4");
-		  tc.info("Booking with Invalid credentials");
+		  tc.info("Booking with Invalid Arriving Airport");
 		  tc.pass("test pass");
 		  ex1.flush();
 	  }
