@@ -84,8 +84,8 @@ public class OneWayFlightBooking extends Base
 		driver.findElement(By.id(p.getProperty("email"))).sendKeys(email);
 
 		driver.findElement(By.xpath(p.getProperty("insurance"))).click();
-		
-		driver.findElement(By.id(p.getProperty("terms"))).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath(p.getProperty("terms"))).click();
 		Thread.sleep(1000);
 	}
 		
@@ -101,7 +101,9 @@ public class OneWayFlightBooking extends Base
     }
 	
 	
-  @Test(enabled=true,priority=1,description="Book 1-way Flight with Valid Credentials")
+	
+	
+  @Test(enabled=false,priority=1,description="Book 1-way Flight with Valid Credentials")
   public void tc_26() throws Exception 
   {
 	  oneway(ex.getData("Sheet4",1,0), ex.getData("Sheet4",1,1), ex.getData("Sheet4",1,2));
@@ -131,7 +133,7 @@ public class OneWayFlightBooking extends Base
 	  tc.pass("test pass");	
   }
   
-  @Test(enabled=true,priority=3,description="Book 1-way Flight with InValid Credentials")
+  @Test(enabled=false,priority=3,description="Book 1-way Flight with InValid Credentials")
   public void tc_29() throws Exception 
   {
 	  oneway(ex.getData("Sheet4",3,0), ex.getData("Sheet4",3,1), ex.getData("Sheet4",3,2));
@@ -144,7 +146,7 @@ public class OneWayFlightBooking extends Base
 	  tc.pass("test pass");
   }
   
-  @Test(enabled=true,priority=4,description="Book 1-way Flight with InValid Credentials")
+  @Test(enabled=false,priority=4,description="Book 1-way Flight with InValid Credentials")
   public void tc_30() throws Exception 
   {
 	  oneway(ex.getData("Sheet4",4,0), ex.getData("Sheet4",4,1), ex.getData("Sheet4",4,2));

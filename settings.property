@@ -1,8 +1,14 @@
+browser=firefox
+cpath=src/test/resources/drivers/chromedriver.exe
+fpath=src/test/resources/drivers/geckodriver.exe
+
+
+
 url= https://in.via.com/
 roundTrip=//label[normalize-space()='Round trip']
 depart=departure
-departure=//div[@id='depart-cal']/div[3]/div[2]/div[4]/div[3]
-return=//div[@id='return-cal']/div[3]/div[2]/div[4]/div[5]
+departure=//div[@id='depart-cal']/div[3]/div[2]/div[*]/div[contains(text(),'19')]
+return=//div[@id='return-cal']/div[3]/div[2]/div[*]/div[contains(text(),'21')]
 from=source
 to=destination
 fromdrop=span[class='name']
@@ -19,10 +25,15 @@ direct=[value='DIRECT']
 nonStop=[value='DIRECT_NONSTOP']
 singleConnecting=[value='SINGLE_CONNECTING']
 searchFlights=search-flight-btn
+
+
 book=//div[@class='u_inlineblk u_width35 u_vertAlignMiddle']
 book_rt=button[class='bookCTA u_marB5']
 book_rt1=//div[contains(@class,'returnResults')]//div[3]//div[1]//div[2]//div[2]//button[1]
 bookFlights=//div[@class='bookCTA return']
+
+
+
 title=adult1Title
 firstName=adult1FirstName
 lastName=adult1Surname
@@ -32,7 +43,7 @@ year=adult1DOByear
 mobile=contactMobile
 email=contactEmail
 insurance=//div[@class='row']/div/div/label
-terms=msgInfoChkBox_label
+terms=//label[@id='msgInfoChkBox_label']
 proceedBooking=//div[@class='inBlk makePayDiv']
 makePayment=confirmProceedPayBtn
 filter=//div[contains(@class,'airlines allFilter')]//p
@@ -50,3 +61,16 @@ calendar1=//div[@class='multi-city-box-0 box']//div[@class='calendar-icon']
 calendar2=//div[@class='multi-city-box-1 box']//div[@class='calendar-icon']
 departure1=//div[@id='depart-cal-0']/div[3]/div[2]/div[*]/div[contains(text(),"25")]
 departure2=//div[@id='depart-cal-1']/div[4]/div[2]/div[*]/div[contains(text(),"20")]
+
+
+destin=//input[@id='destination']
+checkin=//div[@id='depart-cal']/div[3]/div[2]/div[*]/div[contains(text(),'22')]
+checkout=//div[@id='return-cal']/div[3]/div[2]/div[*]/div[contains(text(),'24')]
+searchhotels=//div[@class='search-hotel u_vertAlignMiddle u_floatR']
+selectrooms=//div[@class='selectBtn js-viewRoom via-processed']
+bookroom=//div[@class='bookBtn js-bookRoom via-processed']
+hmobile=//input[@id='contactMobile']
+hemail=//input[@id='contactEmail']
+Terms&conditions=//label[@id='read_terms_label']
+proceedtobooking=//button[normalize-space()='Proceed to Booking']
+confirmproceedbtn=//button[@id='confirmProceedPayBtn']

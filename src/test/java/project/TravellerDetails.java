@@ -15,6 +15,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class TravellerDetails extends Base
 {
+	
 	Excel_Import ex= new Excel_Import("D:\\LTI\\TRAINING\\MANUAL TESTING\\Data.xlsx");
 	Properties p =new Properties();
 	ExtentReports ex1= new ExtentReports();
@@ -22,13 +23,12 @@ public class TravellerDetails extends Base
 	
 	public void flight(String from,String to,String airline) throws Exception 
 	{  
-		 p.load(new FileInputStream("settings.property"));
-		 driver.get(p.getProperty("url"));
-		 ex1.attachReporter(new ExtentHtmlReporter("TravellerDetails.html"));
+		  p.load(new FileInputStream("settings.property"));
+		  driver.get(p.getProperty("url"));
+		  ex1.attachReporter(new ExtentHtmlReporter("TravellerDetails.html"));
 		  driver.manage().deleteAllCookies();
 		  driver.findElement(By.id(p.getProperty("from"))).clear();
 		  driver.findElement(By.id(p.getProperty("from"))).sendKeys(from);
-		  
 		  List<WebElement> l1= driver.findElements(By.cssSelector(p.getProperty("fromdrop")));
 		  l1.get(0).click(); 
 		  driver.findElement(By.id(p.getProperty("to"))).clear();
@@ -38,19 +38,14 @@ public class TravellerDetails extends Base
 		  Thread.sleep(1000);
 		  
 		  driver.findElement(By.xpath("//div[@id='depart-cal']/div[4]/div[2]/div[3]/div[2]")).click();
-		  
 		  driver.findElement(By.cssSelector(p.getProperty("more"))).click();
-		  
 		  driver.findElement(By.id(p.getProperty("airline"))).clear();
 		  driver.findElement(By.id(p.getProperty("airline"))).sendKeys(airline);
-		  
 		  driver.findElement(By.xpath(p.getProperty("airlineselect"))).click();
-		 
 		  driver.findElement(By.id(p.getProperty("class"))).click();
 		  driver.findElement(By.cssSelector(p.getProperty("economy"))).click();
 		  driver.findElement(By.id(p.getProperty("routing"))).click();
 		  driver.findElement(By.cssSelector(p.getProperty("direct"))).click();
-		 
 		  driver.findElement(By.id(p.getProperty("searchFlights"))).click();
 		  Thread.sleep(5000);
 		  
@@ -73,23 +68,28 @@ public class TravellerDetails extends Base
 		driver.findElement(By.id(p.getProperty("month"))).sendKeys(month);
 		driver.findElement(By.id(p.getProperty("year"))).sendKeys(year);
 		driver.findElement(By.id(p.getProperty("mobile"))).clear();
+		Thread.sleep(1000);
 		driver.findElement(By.id(p.getProperty("mobile"))).sendKeys(mobile);
+		Thread.sleep(1000);
 		driver.findElement(By.id(p.getProperty("email"))).clear();
+		Thread.sleep(1000);
 		driver.findElement(By.id(p.getProperty("email"))).sendKeys(email);
+		Thread.sleep(1000);
 	}
-	public void insurance()
+	public void insurance() throws Exception
 	{
 		driver.findElement(By.xpath(p.getProperty("insurance"))).click();
+		Thread.sleep(1000);
 	}
 	public void msginfo() throws Exception
 	{
-		driver.findElement(By.id(p.getProperty("terms"))).click();
+		driver.findElement(By.xpath(p.getProperty("terms"))).click();
 		Thread.sleep(1000);
 	}	
 	public void pay() throws Exception
 	{
 		driver.findElement(By.xpath(p.getProperty("proceedBooking"))).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 	}
 		public void pay1() throws Exception 
 		{
@@ -97,7 +97,7 @@ public class TravellerDetails extends Base
 			Thread.sleep(2000);
 	}
 	
-  @Test(enabled=true,priority=1,description="Booking with Valid Credentials")
+  @Test(enabled=false,priority=1,description="Booking with Valid Credentials")
   public void tc_44() throws Exception 
   {
 	  flight(ex.getData("Sheet3",1,0), ex.getData("Sheet3",1,1), ex.getData("Sheet3",1,2));
@@ -135,7 +135,7 @@ public class TravellerDetails extends Base
 	  tc.pass("test pass");	 
   }
   
-  @Test(enabled=true,priority=3,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=3,description="Booking with Invalid Credentials")
   public void tc_46() throws Exception 
   {
 	
@@ -155,7 +155,7 @@ public class TravellerDetails extends Base
 	  tc.pass("test pass");	 
   }
   
-  @Test(enabled=true,priority=4,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=4,description="Booking with Invalid Credentials")
   public void tc_47() throws Exception 
   {
 	  flight(ex.getData("Sheet3",4,0), ex.getData("Sheet3",4,1), ex.getData("Sheet3",4,2));
@@ -176,7 +176,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=5,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=5,description="Booking with Invalid Credentials")
   public void tc_48() throws Exception 
   {
 	  flight(ex.getData("Sheet3",5,0), ex.getData("Sheet3",5,1), ex.getData("Sheet3",5,2));
@@ -195,7 +195,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=6,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=6,description="Booking with Invalid Credentials")
   public void tc_49() throws Exception 
   {
 	  flight(ex.getData("Sheet3",6,0), ex.getData("Sheet3",6,1), ex.getData("Sheet3",6,2));
@@ -214,7 +214,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=7,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=7,description="Booking with Invalid Credentials")
   public void tc_50() throws Exception 
   {
 	  flight(ex.getData("Sheet3",7,0), ex.getData("Sheet3",7,1), ex.getData("Sheet3",7,2));
@@ -233,7 +233,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=8,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=8,description="Booking with Invalid Credentials")
   public void tc_51() throws Exception 
   {
 	  flight(ex.getData("Sheet3",8,0), ex.getData("Sheet3",8,1), ex.getData("Sheet3",8,2));
@@ -252,7 +252,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=9,description="Booking with Missing Credentials")
+  @Test(enabled=false,priority=9,description="Booking with Missing Credentials")
   public void tc_52() throws Exception 
   {
 	  flight(ex.getData("Sheet3",9,0), ex.getData("Sheet3",9,1), ex.getData("Sheet3",9,2));
@@ -271,7 +271,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=10,description="Booking with Invalid Credentials")
+  @Test(enabled=false,priority=10,description="Booking with Invalid Credentials")
   public void tc_53() throws Exception 
   {
 	  flight(ex.getData("Sheet3",10,0), ex.getData("Sheet3",10,1), ex.getData("Sheet3",10,2));
@@ -280,6 +280,7 @@ public class TravellerDetails extends Base
 	  insurance();
 	  msginfo();
 	  pay();
+	  Thread.sleep(1000);
 	  boolean data=driver.findElement(By.xpath("//*[text()='Enter Valid Email ( Required )']")).isDisplayed();
 	  Assert.assertTrue(data);
 	  System.out.println(driver.findElement(By.xpath("//*[text()='Enter Valid Email ( Required )']")).getText());
@@ -290,7 +291,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=11,description="Booking with Missing Credentials")
+  @Test(enabled=false,priority=11,description="Booking with Missing Credentials")
   public void tc_54() throws Exception 
   {
 	  flight(ex.getData("Sheet3",11,0), ex.getData("Sheet3",11,1), ex.getData("Sheet3",11,2));
@@ -310,7 +311,7 @@ public class TravellerDetails extends Base
 	  
   }
   
-  @Test(enabled=true,priority=12,description="Booking with Missing Credentials")
+  @Test(enabled=false,priority=12,description="Booking with Missing Credentials")
   public void tc_55() throws Exception 
   {
 	  
@@ -331,7 +332,7 @@ public class TravellerDetails extends Base
 	  
 	  
   }
-  @Test(enabled=true,priority=13,description="Booking with Missing Credentials")
+  @Test(enabled=false,priority=13,description="Booking with Missing Credentials")
   public void tc_56() throws Exception 
   {
 	  
