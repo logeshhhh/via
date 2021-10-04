@@ -3,15 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="project.TravellerDetails">
+      <class name="project.MultiCity">
         <methods>
           <include name="afterTest"/>
+          <include name="tc_40"/>
           <include name="beforeTest"/>
-          <include name="tc_52"/>
-          <include name="tc_53"/>
-          <include name="tc_54"/>
         </methods>
-      </class> <!-- project.TravellerDetails -->
+      </class> <!-- project.MultiCity -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
